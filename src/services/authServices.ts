@@ -17,3 +17,12 @@ export async function signUpNewUser(
 
   return data;
 }
+
+export async function signInUser(email: string, password: string) {
+  const data = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
+
+  return data;
+}
