@@ -26,3 +26,9 @@ export async function signInUser(email: string, password: string) {
 
   return data;
 }
+
+export async function resetPassword(email: string) {
+  const data = await supabase.auth.resetPasswordForEmail(email);
+
+  return data;
+}
