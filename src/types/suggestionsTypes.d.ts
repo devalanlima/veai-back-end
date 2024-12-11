@@ -6,5 +6,5 @@ export interface SuggestionsQuery {
   order?: keyof Tables<'Suggestions'>;
   ascending?: boolean;
   movieId?: string;
-  genres?: number[];
+  genres?: string;
 }
