@@ -34,10 +34,25 @@ export type Database = {
   };
   public: {
     Tables: {
+      Genres: {
+        Row: {
+          id: number;
+          name: string | null;
+        };
+        Insert: {
+          id?: number;
+          name?: string | null;
+        };
+        Update: {
+          id?: number;
+          name?: string | null;
+        };
+        Relationships: [];
+      };
       Suggestions: {
         Row: {
           created_at: string;
-          genres: string[] | null;
+          genres: number[] | null;
           id: number;
           movie_id: number;
           receiver_id: string | null;
@@ -48,7 +63,7 @@ export type Database = {
         };
         Insert: {
           created_at?: string;
-          genres?: string[] | null;
+          genres?: number[] | null;
           id?: number;
           movie_id: number;
           receiver_id?: string | null;
@@ -59,7 +74,7 @@ export type Database = {
         };
         Update: {
           created_at?: string;
-          genres?: string[] | null;
+          genres?: number[] | null;
           id?: number;
           movie_id?: number;
           receiver_id?: string | null;
