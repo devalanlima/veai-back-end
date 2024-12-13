@@ -1,18 +1,14 @@
-import { SuggestionsQuery } from '../types/suggestionsTypes';
+import { SuggestionsQuery } from '../schemas/suggestionsSchemas';
 import supabase from '../utils/supabaseClient';
 
-export async function filterSuggestions(dataQuery: SuggestionsQuery) {
-  const {
-    ascending = false,
-    genres: genresQuery,
-    movieId,
-    order = 'created_at',
-    pageSize = 10,
-    page = 1,
-  } = dataQuery;
-
-  const genres = genresQuery && genresQuery.split(',');
-
+export async function filterSuggestions({
+  ascending,
+  genres,
+  movieId,
+  order,
+  pageSize,
+  page,
+}: SuggestionsQuery) {
   let query = supabase
     .from('Suggestions')
     .select('*')
