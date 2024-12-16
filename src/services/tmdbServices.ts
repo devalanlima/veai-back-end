@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 import { TMDBMovieResponse } from '../types/tmdbTypes';
-import { MoviesQuery } from '../schemas/tmdbSchemas';
+import { PopularMoviesQuery } from '../schemas/tmdbSchemas';
 
 dotenv.config();
 
@@ -11,7 +11,7 @@ export async function filterPopularMovies({
   page,
   region,
   pageSize,
-}: MoviesQuery): Promise<{
+}: PopularMoviesQuery): Promise<{
   data: TMDBMovieResponse['results'] | null;
   error: {
     statusCode: number;

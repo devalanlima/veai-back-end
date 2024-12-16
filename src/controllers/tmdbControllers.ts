@@ -1,10 +1,13 @@
 import { Request, Response } from 'express';
 import { z } from 'zod';
 import { filterPopularMovies } from '../services/tmdbServices';
-import { MoviesQuery, PopularMoviesQuerySchema } from '../schemas/tmdbSchemas';
+import {
+  PopularMoviesQuery,
+  PopularMoviesQuerySchema,
+} from '../schemas/tmdbSchemas';
 
 export async function getPopularMovies(
-  req: Request<{}, {}, {}, MoviesQuery>,
+  req: Request<{}, {}, {}, PopularMoviesQuery>,
   res: Response,
 ) {
   let query;
