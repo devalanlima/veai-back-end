@@ -6,7 +6,7 @@ export const SuggestionsQuerySchema = z.object({
   page: z.coerce.number().min(1).optional().default(1),
   pageSize: z.coerce.number().min(1).optional().default(10),
   movieId: z.coerce.number().min(1).optional(),
-  order: z.enum(orders).optional().default('created_at'),
+  orderBy: z.enum(orders).optional().default('created_at'),
   ascending: z
     .preprocess((value) => {
       if (value === 'true' || value === 'TRUE') return true;

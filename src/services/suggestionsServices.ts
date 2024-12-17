@@ -5,14 +5,14 @@ export async function filterSuggestions({
   ascending,
   genres,
   movieId,
-  order,
+  orderBy,
   pageSize,
   page,
 }: SuggestionsQuery) {
   let query = supabase
     .from('Suggestions')
     .select('*')
-    .order(order, { ascending: ascending })
+    .order(orderBy, { ascending })
     .range(page * pageSize - pageSize, page * pageSize - 1);
 
   movieId && query.eq('movie_id', movieId);
