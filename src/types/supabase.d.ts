@@ -112,18 +112,21 @@ export type Database = {
       Watchlist: {
         Row: {
           created_at: string;
+          genres: string[] | null;
           id: number;
           movie_id: number;
           user_id: string;
         };
         Insert: {
           created_at?: string;
+          genres?: string[] | null;
           id?: number;
           movie_id: number;
           user_id: string;
         };
         Update: {
           created_at?: string;
+          genres?: string[] | null;
           id?: number;
           movie_id?: number;
           user_id?: string;
