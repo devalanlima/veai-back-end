@@ -16,12 +16,12 @@ export async function getGenres(req: Request, res: Response) {
     return;
   }
 
-  const { data: suggestions, error, status } = await filterGenres(query);
+  const { data: genres, error, status } = await filterGenres(query);
 
-  if (suggestions?.length === 0) {
+  if (genres?.length === 0) {
     res.status(200).json({
       msg: 'No items found',
-      data: suggestions,
+      data: genres,
     });
     return;
   }
@@ -30,7 +30,7 @@ export async function getGenres(req: Request, res: Response) {
     res.status(status).json({ msg: error.message });
     return;
   } else {
-    res.status(status).json(suggestions);
+    res.status(status).json(genres);
     return;
   }
 }
