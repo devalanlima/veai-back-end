@@ -1,4 +1,5 @@
 import { WatchedQuery } from '../schemas/watchedSchemas';
+import { TablesInsert } from '../types/supabase';
 import supabase from '../utils/supabaseClient';
 
 export async function filterWatched({
@@ -20,6 +21,27 @@ export async function filterWatched({
   genres && query.contains('genres', genres);
 
   const data = await query;
+
+  return data;
+}
+
+export async function insertNewWatched({
+  created_at,
+  genres,
+  movie_id,
+  user_id,
+}: TablesInsert<'Watched'>) {
+  const data = await supabase
+    .from('Watched')
+    .insert([
+      {
+        movie_id,
+        user_id,
+        created_at,
+        genres,
+      },
+    ])
+    .select();
 
   return data;
 }
