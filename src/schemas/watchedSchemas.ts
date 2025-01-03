@@ -27,4 +27,12 @@ export const WatchedQuerySchema = z.object({
     .optional(),
 });
 
+export const InsertWatchedSchema = z.object({
+  movie_id: z.number(),
+  user_id: z.string(),
+  created_at: z.string(),
+  genres: z.array(z.number().int()).transform((values) => values.map(String)),
+});
+
 export type WatchedQuery = z.infer<typeof WatchedQuerySchema>;
+export type InsertWatched = z.infer<typeof InsertWatchedSchema>;
