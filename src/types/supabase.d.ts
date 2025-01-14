@@ -63,7 +63,7 @@ export type Database = {
         };
         Insert: {
           created_at?: string;
-          genres?: number[] | null;
+          genres?: string[] | null;
           id?: number;
           movie_id: number;
           receiver_id?: string | null;
@@ -74,7 +74,7 @@ export type Database = {
         };
         Update: {
           created_at?: string;
-          genres?: number[] | null;
+          genres?: string[] | null;
           id?: number;
           movie_id?: number;
           receiver_id?: string | null;
