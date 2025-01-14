@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { number, z } from 'zod';
 
 const orders = ['created_at', 'vote_count'] as const;
 
@@ -29,4 +29,15 @@ export const SuggestionsQuerySchema = z.object({
     .optional(),
 });
 
+export const InsertSuggestionSchema = z.object({
+  sender_id: z.string(),
+  receiver_id: z.string(),
+  created_at: z.string(),
+  suggestion: z.string(),
+  movie_id: z.number().min(1),
+  spoiler: z.boolean(),
+  genres: z.array(z.number().int()).transform((values) => values.map(String)),
+});
+
 export type SuggestionsQuery = z.infer<typeof SuggestionsQuerySchema>;
+export type InsertSuggestion = z.infer<typeof InsertSuggestionSchema>;
