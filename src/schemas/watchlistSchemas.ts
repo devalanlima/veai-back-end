@@ -27,4 +27,12 @@ export const WatchlistQuerySchema = z.object({
     .optional(),
 });
 
+export const InsertWatchlistSchema = z.object({
+  movie_id: z.number(),
+  user_id: z.string(),
+  created_at: z.string(),
+  genres: z.array(z.number().int()).transform((values) => values.map(String)),
+});
+
 export type WatchlistQuery = z.infer<typeof WatchlistQuerySchema>;
+export type InsertWatchlist = z.infer<typeof InsertWatchlistSchema>;
