@@ -1,10 +1,16 @@
 import { z } from 'zod';
 import { Request, Response } from 'express';
 import {
+  InsertWatchlist,
+  InsertWatchlistSchema,
   WatchlistQuery,
   WatchlistQuerySchema,
 } from '../schemas/watchlistSchemas';
-import { filterWatchlist } from '../services/watchlistServices';
+import {
+  filterWatchlist,
+  insertInWatchlist,
+} from '../services/watchlistServices';
+import { TablesInsert } from '../types/supabase';
 
 export async function getWatchlist(req: Request, res: Response) {
   let query: WatchlistQuery;
@@ -36,4 +42,30 @@ export async function getWatchlist(req: Request, res: Response) {
     res.status(status).json(watchlist);
     return;
   }
+}
+
+export async function insertWatchlist(
+  req: Request<{}, {}, TablesInsert<'Watchlist'>>,
+  res: Response,
+) {
+  let body: InsertWatchlist;
+
+  try {
+    body = InsertWatchlistSchema.parse(req.body);
+  } catch (error) {
+    res.status(400).json({
+      msg: 'Invalid body parameters',
+      errors: error instanceof z.ZodError ? error.issues : 'Validation error',
+    });
+    return;
+  }
+
+  const { data, error, status } = await insertInWatchlist(body);
+
+  if (error) {
+    res.json(error).status(status);
+    return;
+  }
+
+  res.json(data).status(status);
 }
